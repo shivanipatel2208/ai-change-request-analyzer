@@ -1,0 +1,16 @@
+/* Global, app-wide baseline - per-screen styling lives with each screen
+   (see components/auth-layout.css, styles/home.css). */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}

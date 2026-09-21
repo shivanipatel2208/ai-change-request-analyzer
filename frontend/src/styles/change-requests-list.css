@@ -1,0 +1,372 @@
+/* Shared shell width for both the list and the detail view */
+
+.cr-list-shell,
+.cr-detail-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  box-sizing: border-box;
+}
+
+.cr-detail-shell {
+  max-width: 840px;
+}
+
+.cr-list-status-text {
+  color: #667085;
+  font-size: 0.95rem;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.cr-list-status-text--error {
+  color: #b42318;
+}
+
+/* Heading + toolbar */
+
+.cr-list-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cr-list-heading h1 {
+  margin: 0 0 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.cr-list-heading p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #667085;
+}
+
+.cr-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1.25rem;
+}
+
+.cr-search-input {
+  flex: 1 1 260px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  outline: none;
+  color: #101828;
+}
+
+.cr-search-input:focus {
+  border-color: #4338ca;
+  box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.15);
+}
+
+.cr-filter-select {
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  color: #344054;
+  background: #fff;
+  outline: none;
+  min-width: 150px;
+}
+
+.cr-filter-select:focus {
+  border-color: #4338ca;
+}
+
+/* Module 12 Phase 6: "Assigned to me" list toggle */
+.cr-toolbar-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #344054;
+  padding: 0.6rem 0.4rem;
+  white-space: nowrap;
+}
+
+/* Empty state */
+
+.cr-list-empty {
+  max-width: 380px;
+  margin: 3.5rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.cr-list-empty-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #101828;
+}
+
+/* Table */
+
+.cr-table-card {
+  padding: 0.5rem 1.4rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.cr-list-row {
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.cr-list-row:hover {
+  background: #f9fafb;
+}
+
+.cr-open-link {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4338ca;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cr-list-row:hover .cr-open-link {
+  text-decoration: underline;
+}
+
+/* Pagination */
+
+.cr-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cr-pagination-summary {
+  font-size: 0.82rem;
+  color: #667085;
+}
+
+.cr-pagination-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Detail view */
+
+.cr-detail-heading {
+  margin-bottom: 1.5rem;
+}
+
+.cr-detail-heading h1 {
+  margin: 0 0 0.6rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.cr-detail-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cr-detail-section {
+  background: #fff;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.cr-section-title--spaced {
+  margin-top: 1.4rem;
+}
+
+.cr-detail-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #344054;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.cr-detail-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.5rem;
+  margin: 0.75rem 0 0;
+}
+
+.cr-detail-grid dt {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #667085;
+}
+
+.cr-detail-grid dd {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #101828;
+}
+
+.cr-capitalize {
+  text-transform: capitalize;
+}
+
+.cr-no-analysis {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.cr-question-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cr-question-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.cr-question-text {
+  margin: 0 0 0.2rem;
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: #101828;
+}
+
+.cr-question-reason {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #667085;
+}
+
+/* A human's answer to one clarification question, once one has been
+ * provided - see ClarificationAnswerControl in AnalysisDashboardPage.jsx. */
+.cr-question-answer {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.65rem;
+  background: #ecfdf3;
+  border: 1px solid #d1fadf;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #101828;
+}
+
+.cr-question-answer-label {
+  font-weight: 600;
+  color: #067647;
+}
+
+/* Module 6: AI analysis detail sections (Requirements, Affected
+   Components, Dependencies, Risks, Test Cases, Implementation Plan) - reuse
+   the same .cr-detail-section shell and .badge classes as the rest of the
+   page, just a list layout instead of a definition grid. */
+
+.cr-analysis-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cr-analysis-list-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.cr-analysis-list-tag {
+  margin: 0 0 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #101828;
+}
+
+.cr-analysis-list-text {
+  margin: 0;
+  font-size: 0.87rem;
+  color: #344054;
+  line-height: 1.5;
+}
+
+.cr-analysis-list-mitigation {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  color: #667085;
+  line-height: 1.5;
+}
+
+.cr-plain-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.87rem;
+  color: #344054;
+  line-height: 1.6;
+}
+
+.cr-form-actions--left {
+  justify-content: flex-start;
+  padding-top: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .cr-toolbar {
+    flex-direction: column;
+  }
+
+  .cr-search-input,
+  .cr-filter-select {
+    width: 100%;
+  }
+
+  .cr-list-heading {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .cr-list-shell,
+  .cr-detail-shell {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .cr-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cr-detail-grid dt {
+    margin-top: 0.5rem;
+  }
+}

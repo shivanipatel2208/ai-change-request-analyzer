@@ -1,0 +1,1 @@
+OTP codes must expire after 5 minutes.

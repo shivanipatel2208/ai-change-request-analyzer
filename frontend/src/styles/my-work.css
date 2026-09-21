@@ -1,0 +1,35 @@
+/* Module 18 Phase 4 (Notifications, My Work & Personal Engineering Queue) -
+   small additions on top of dashboard.css/change-requests-list.css/
+   analysis-dashboard.css, which supply everything else this page uses
+   (.dashboard-shell, .metric-card, .ad-tabs, .requests-table, .badge, ...). */
+
+.metric-card-clickable {
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.metric-card-clickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(16, 24, 40, 0.06);
+}
+
+.metric-card-clickable:focus-visible {
+  outline: 2px solid #4338ca;
+  outline-offset: 2px;
+}
+
+.waiting-badge {
+  margin-left: 0.4rem;
+}
+
+/* Module 18 Phase 5 - Approve/Reject/Request Changes/View CR buttons in
+   the My Approvals and Overdue Items tables' Actions column. .respond-form
+   itself (the inline comment box that opens for Reject/Request Changes)
+   is already styled by workflow.css, reused as-is. */
+.approval-actions-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}

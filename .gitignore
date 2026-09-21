@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Env secrets
+.env
+
+# SQLite data
+backend/data/*.db
+backend/data/*.db-journal
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+.pytest_cache/
+tests/__pycache__/
+
+# Old internal delivery scratch folders (not part of the real project)
+_effort_fix/
+_module7_delivery/
+_module8_delivery/
+_module9_delivery/
+_module10_delivery/
+_placeholder_fix/
+_ticket_search/
+
+# Never commit this - it briefly holds a GitHub access token
+push_to_github.bat

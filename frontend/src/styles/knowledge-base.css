@@ -1,0 +1,56 @@
+/* Module 16 Frontend phase: the handful of rules genuinely new to the
+   Knowledge Base page - everything else (list shell, toolbar, table,
+   badges, buttons, analysis-list rows) reuses classes already defined in
+   dashboard.css / change-request-form.css / change-requests-list.css /
+   workflow.css. */
+
+.kb-upload-control {
+  display: flex;
+  align-items: center;
+}
+
+/* The real <input type="file"> is visually hidden - its own <label>
+   (styled as a normal .cr-btn) is what the person actually clicks, so an
+   upload control looks like every other button on this page instead of
+   the browser's default file-picker chrome. */
+.kb-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.kb-file-input:focus-visible + label,
+.kb-file-input:focus + label {
+  outline: 2px solid #4338ca;
+  outline-offset: 2px;
+}
+
+.kb-search-results {
+  margin-bottom: 1.25rem;
+}
+
+.kb-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  white-space: nowrap;
+}
+
+.kb-inline-badge {
+  margin-left: 0.5rem;
+}
+
+.kb-preview-row td {
+  background: #f9fafb;
+  padding: 1rem 1.4rem 1.25rem;
+}
+
+.kb-chunk-list {
+  margin-top: 0;
+}

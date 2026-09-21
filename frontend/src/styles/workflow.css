@@ -1,0 +1,578 @@
+/* Module 12 Phase 2: version badge, "AI analysis outdated" banner, and the
+ * simple History / Versions sections + version-compare view on the Change
+ * Request detail page and the Edit page's "here's what changed" screen. */
+
+.version-badge {
+  background: #f2f4f7;
+  color: #475467;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The "CR v1"/"Analysis v1" badges at the top of the Analysis Dashboard
+ * (see AnalysisDashboardPage.jsx) are real <button> elements, not <span>,
+ * so they need the browser's own button chrome reset before .badge's own
+ * pill styling shows through cleanly. Clicking either jumps to the
+ * History tab below. */
+.version-badge--clickable {
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.version-badge--clickable:hover {
+  background: #e4e7ec;
+  color: #101828;
+}
+
+/* Analysis History rows (AnalysisHistoryTab): "Analysis #N" is this run's
+ * own position in the list; "(CR vX)" is a secondary, de-emphasized
+ * detail showing which content version it ran against - the two numbers
+ * are deliberately not the same thing (see that component's own comment). */
+.version-row-cr-version {
+  font-weight: 500;
+  color: #667085;
+}
+
+/* Module 12 Phase 2 added an Edit button to the detail heading - lay the
+ * title/badges out on the left and the button on the right rather than
+ * letting it stack under the badges (change-requests-list.css's
+ * .cr-detail-heading predates this and is just a plain block). */
+.cr-detail-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cr-detail-heading > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Outdated-analysis banner */
+
+.outdated-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: #fffaeb;
+  border: 1px solid #fedf89;
+  color: #b54708;
+  padding: 0.85rem 1.1rem;
+  border-radius: 10px;
+  margin: 0 0 1.25rem;
+}
+
+.outdated-banner-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.87rem;
+  line-height: 1.45;
+}
+
+.outdated-banner-icon {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.outdated-banner strong {
+  font-weight: 700;
+}
+
+/* Module 12 Phase 6: detail-page tabs (Overview / Versions & Activity /
+   Comments) - the page had grown into one long stack of sections. */
+
+.cr-detail-tabs {
+  display: flex;
+  gap: 0.3rem;
+  border-bottom: 1px solid #eaecf0;
+  margin: 0 0 1.25rem;
+}
+
+.cr-detail-tab {
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #667085;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.65rem 0.9rem;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.cr-detail-tab:hover {
+  color: #101828;
+}
+
+.cr-detail-tab--active {
+  color: #4338ca;
+  border-bottom-color: #4338ca;
+}
+
+/* History timeline */
+
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.history-item {
+  display: flex;
+  gap: 0.75rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.history-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4338ca;
+  margin-top: 0.4rem;
+  flex-shrink: 0;
+}
+
+.history-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-line {
+  font-size: 0.87rem;
+  color: #101828;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.history-line strong {
+  font-weight: 600;
+}
+
+.history-meta {
+  font-size: 0.78rem;
+  color: #98a2b3;
+  margin: 0.15rem 0 0;
+}
+
+.history-value-change {
+  font-size: 0.82rem;
+  color: #475467;
+  margin: 0.2rem 0 0;
+}
+
+.history-value-change .from-value {
+  color: #b42318;
+  text-decoration: line-through;
+}
+
+.history-value-change .to-value {
+  color: #067647;
+  font-weight: 600;
+}
+
+/* Versions list */
+
+.versions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.version-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  background: #f9fafb;
+  border: 1px solid #eaecf0;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.version-row-main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.version-row-number {
+  font-weight: 700;
+  color: #101828;
+  font-size: 0.88rem;
+}
+
+.version-row-summary {
+  font-size: 0.85rem;
+  color: #475467;
+}
+
+.version-row-meta {
+  font-size: 0.78rem;
+  color: #98a2b3;
+}
+
+.cr-btn--small {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+}
+
+/* Version compare */
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 0.75rem;
+}
+
+.compare-table th,
+.compare-table td {
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid #f2f4f7;
+  vertical-align: top;
+}
+
+.compare-table th {
+  color: #667085;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.compare-row--unchanged {
+  color: #98a2b3;
+}
+
+.compare-row--changed .compare-old {
+  color: #b42318;
+  text-decoration: line-through;
+}
+
+.compare-row--changed .compare-new {
+  color: #067647;
+  font-weight: 600;
+}
+
+.compare-row--added .compare-new {
+  color: #067647;
+  font-weight: 600;
+}
+
+.compare-row--removed .compare-old {
+  color: #b42318;
+  text-decoration: line-through;
+}
+
+/* Edit page: "here's what changed" confirmation */
+
+.edit-confirm-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: left;
+}
+
+.edit-confirm-item {
+  background: #f9fafb;
+  border: 1px solid #eaecf0;
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.edit-confirm-field {
+  font-weight: 600;
+  color: #101828;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.edit-confirm-values .from-value {
+  color: #b42318;
+  text-decoration: line-through;
+}
+
+.edit-confirm-values .to-value {
+  color: #067647;
+  font-weight: 600;
+}
+
+.no-changes-note {
+  margin: 1rem 0 0;
+  font-size: 0.87rem;
+  color: #667085;
+}
+
+/* Module 12 Phase 3: status workflow + assignments */
+
+.status-form,
+.assign-form,
+.respond-form {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.status-form-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.assignments-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.assignment-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.8rem;
+  background: #f9fafb;
+  border: 1px solid #eaecf0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+/* Module 12 Phase 4: approvals */
+
+.approvals-recommendation {
+  background: #f2f4ff;
+  border: 1px solid #d1d9ff;
+  color: #363f9c;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.approvals-list {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.approval-row {
+  padding: 0.65rem 0.85rem;
+  background: #f9fafb;
+  border: 1px solid #eaecf0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.approval-row-main {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Module 12 Phase 5: comments + mentions */
+
+.comments-list {
+  list-style: none;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.comment-row {
+  padding: 0.65rem 0.85rem;
+  background: #f9fafb;
+  border: 1px solid #eaecf0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.comment-row--reply {
+  background: #fff;
+}
+
+.comment-row-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.comment-body {
+  white-space: pre-wrap;
+}
+
+/* Module 12 Phase 5: inline @mention autocomplete (MentionTextarea) */
+
+.mention-input-wrap {
+  position: relative;
+}
+
+.mention-suggestions {
+  position: absolute;
+  z-index: 20;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0.25rem 0 0;
+  padding: 0.25rem;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.12);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.mention-suggestion {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #101828;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mention-suggestion:hover,
+.mention-suggestion--active {
+  background: #f2f4ff;
+}
+
+.comment-row-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.comment-reply-form {
+  margin-top: 0.4rem;
+}
+
+.comment-reply-form textarea,
+.assign-form textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.comment-replies-list {
+  list-style: none;
+  margin: 0.5rem 0 0 1.25rem;
+  padding: 0.5rem 0 0 0.75rem;
+  border-left: 2px solid #eaecf0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Module 12 Phase 5: notifications inbox (NotificationsPage) */
+
+.notifications-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.notification-row {
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.notification-row[role='button'] {
+  cursor: pointer;
+}
+
+.notification-row[role='button']:hover {
+  border-color: #b8c0ff;
+}
+
+.notification-row--unread {
+  background: #f7f8ff;
+  border-color: #d1d9ff;
+}
+
+.notification-row-main {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4046ca;
+  display: inline-block;
+}
+
+.notification-row-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}

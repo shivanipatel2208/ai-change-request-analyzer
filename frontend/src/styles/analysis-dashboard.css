@@ -1,0 +1,886 @@
+/* Module 7: AI Analysis Dashboard - the dedicated results page reached from
+   a change request's "View Full AI Analysis" button. Reuses .cr-detail-
+   section / .cr-analysis-list / .badge / .chart-card / .bar-* classes from
+   the existing stylesheets rather than redefining them; everything below
+   is specific to this page (header, summary cards, gauges, tabs). */
+
+.ad-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  box-sizing: border-box;
+}
+
+/* Header */
+
+.ad-header {
+  margin-bottom: 1.5rem;
+}
+
+.ad-header-code {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #4338ca;
+  margin-bottom: 0.25rem;
+}
+
+.ad-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+/* Module 14 Phase 1: CR version / analysis version / status, shown as a
+   small badge row under the title. */
+.ad-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* Module 14 Phase 1: the recommended-approval-types badge row on the
+   Overview tab's Recommendation section. */
+.ad-recommended-approvals {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cr-detail-text-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475467;
+}
+
+.ad-header--row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ad-header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  flex: none;
+}
+
+.ad-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ad-header-error {
+  margin: 0;
+  text-align: right;
+  max-width: 260px;
+}
+
+/* Module 20 (Version-Aware Reports): the "current version has not been
+ * analyzed" warning and the "report for a specific version" picker both
+ * live in the same narrow, right-aligned .ad-header-actions column as the
+ * buttons above them - .outdated-banner's own side-by-side layout (built
+ * for a full-width banner elsewhere on this page) is overridden here to
+ * stack instead, and given room to actually read left-aligned. */
+
+.ad-report-mismatch {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 380px;
+  text-align: left;
+  margin: 0;
+}
+
+.ad-report-mismatch-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ad-report-version-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  font-size: 0.82rem;
+  color: #475467;
+}
+
+.ad-report-version-picker label {
+  font-weight: 600;
+}
+
+.ad-report-version-picker select {
+  font-family: inherit;
+  font-size: 0.82rem;
+  color: #101828;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  background: #fff;
+}
+
+/* Summary cards */
+
+.ad-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ad-summary-card {
+  background: #fff;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  padding: 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.ad-summary-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #667085;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ad-summary-body {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.ad-summary-body--center {
+  align-items: center;
+}
+
+.ad-summary-sub {
+  font-size: 0.78rem;
+  color: #98a2b3;
+}
+
+.ad-summary-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #101828;
+  line-height: 1.4;
+}
+
+.ad-summary-badge {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+}
+
+/* Module 14 Phase 3: stacks a summary card's main value above its
+   confidence badge, rather than fighting .ad-summary-body's row layout
+   at narrow card widths. */
+.ad-summary-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ad-complexity-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Module 14 Phase 4: the 7-category Impact Analysis card grid on the
+   Impact tab. */
+.ad-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ad-impact-card {
+  background: #f9fafb;
+  border-radius: 8px;
+  margin: 0;
+  padding: 1rem 1.1rem;
+}
+
+.ad-impact-card-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #101828;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.ad-impact-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .ad-impact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Gauges - pure CSS donut via conic-gradient, no charting library */
+
+.ad-gauge {
+  --gauge-pct: 0%;
+  --gauge-color: #4338ca;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex: none;
+  background: conic-gradient(var(--gauge-color) var(--gauge-pct), #f2f4f7 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.ad-gauge-inner {
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-gauge-value {
+  position: relative;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+/* Recommendation card */
+
+.ad-recommendation-card {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.ad-recommendation-card--success {
+  background: #ecfdf3;
+  border-color: #abefc6;
+}
+
+.ad-recommendation-card--warning {
+  background: #fffaeb;
+  border-color: #fedf89;
+}
+
+.ad-recommendation-card--danger {
+  background: #fef3f2;
+  border-color: #fecdca;
+}
+
+.ad-recommendation-card--neutral {
+  background: #f9fafb;
+}
+
+.ad-recommendation-value {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #101828;
+  line-height: 1.4;
+}
+
+.ad-recommendation-inline {
+  font-size: 0.95rem;
+  margin: 0 0 0.5rem;
+}
+
+/* Tabs */
+
+.ad-tabs {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.ad-tab {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #667085;
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.ad-tab:hover {
+  background: #f9fafb;
+  color: #344054;
+}
+
+.ad-tab--active {
+  background: #eef1fd;
+  color: #4338ca;
+}
+
+.ad-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background: #b42318;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.ad-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Shared small helpers */
+
+.ad-empty {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #98a2b3;
+  padding: 0.5rem 0;
+}
+
+.ad-mt {
+  margin-top: 0.75rem;
+}
+
+.ad-inline-badge {
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+/* Module 13 Phase 2/5: added/removed requirement & affected-component
+ * lines in the analysis History/Compare tab - same red/green language as
+ * .compare-row--added/.compare-row--removed (workflow.css), just applied
+ * to plain text lines rather than table cells. */
+.diff-added {
+  color: #067647;
+}
+
+.diff-removed {
+  color: #b42318;
+  text-decoration: line-through;
+}
+
+/* Confidence bar (Impact tab) */
+
+.ad-confidence-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.ad-confidence-track {
+  flex: 1;
+  max-width: 220px;
+}
+
+.ad-confidence-value {
+  font-size: 0.78rem;
+  color: #667085;
+  white-space: nowrap;
+}
+
+/* Missing Information banner */
+
+.ad-missing-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.1rem 1.4rem;
+  border-radius: 12px;
+  border: 1px solid;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.ad-missing-banner--alert {
+  background: #fef3f2;
+  border-color: #fecdca;
+  color: #b42318;
+}
+
+.ad-missing-banner--clear {
+  background: #ecfdf3;
+  border-color: #abefc6;
+  color: #067647;
+}
+
+.ad-missing-count {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Module 9: Risks tab */
+
+.rk-overall {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rk-overall-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.rk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rk-card {
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: #fff;
+}
+
+.rk-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.rk-card-category {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475467;
+}
+
+.rk-card-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.2rem 0;
+}
+
+.rk-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rk-metric-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #98a2b3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.rk-metric-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rk-metric-value {
+  font-size: 0.78rem;
+  color: #667085;
+  white-space: nowrap;
+}
+
+.rk-card-label {
+  margin: 0.2rem 0 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #98a2b3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 640px) {
+  .rk-card-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Module 9: Security tab */
+
+.sec-level-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sec-level-badge {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+}
+
+.sec-checklist-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.5rem 0 0.85rem;
+}
+
+.sec-checklist-progress-text {
+  font-size: 0.78rem;
+  color: #667085;
+  white-space: nowrap;
+}
+
+.sec-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sec-checklist-item label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
+.sec-checklist-item input[type='checkbox'] {
+  margin-top: 0.2rem;
+  flex: none;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.sec-checklist-tag {
+  flex: none;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  margin-top: 0.05rem;
+}
+
+.sec-checklist-tag--concern {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.sec-checklist-tag--mitigation {
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.sec-checklist-text {
+  font-size: 0.85rem;
+  color: #344054;
+  line-height: 1.4;
+}
+
+.sec-checklist-text--done {
+  color: #98a2b3;
+  text-decoration: line-through;
+}
+
+/* Effort tab */
+
+.ad-effort-note {
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  color: #98a2b3;
+  font-style: italic;
+}
+
+.ad-effort-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.ad-effort-row {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ad-effort-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #667085;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ad-effort-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #101828;
+}
+
+/* Module 10: Test Cases tab filters */
+
+.tc-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tc-filter-count {
+  font-size: 0.8rem;
+  color: #98a2b3;
+  margin-left: auto;
+}
+
+/* Module 10: Implementation Plan timeline */
+
+.ip-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ip-step {
+  display: flex;
+  gap: 1rem;
+}
+
+.ip-step-marker {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ip-step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #4338ca;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.ip-step-line {
+  flex: 1;
+  width: 2px;
+  min-height: 24px;
+  background: #e4e7ec;
+  margin: 0.25rem 0;
+}
+
+.ip-step-card {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: #fff;
+}
+
+.ip-step-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.ip-step-task {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.ip-step-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.15rem 0.6rem;
+  margin: 0.2rem 0 0;
+}
+
+.ip-step-meta dt {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #98a2b3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ip-step-meta dd {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #344054;
+}
+
+@media (max-width: 1100px) {
+  .ad-summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .ad-shell {
+    padding: 1.25rem 1rem 3rem;
+  }
+
+  .ad-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ad-effort-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tc-filter-count {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .ip-step-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .tl-linked {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Module 17 Phase 2: Test Cases tab - ordered steps list */
+
+.tc-steps {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: #344054;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+/* Module 17 Phase 4: Traceability tab */
+
+.tl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.tl-row {
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  background: #fff;
+}
+
+.tl-requirement {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.tl-linked {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed #eaecf0;
+}
+
+.tl-column-title {
+  margin: 0 0 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #98a2b3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.tl-column-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: #344054;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tl-untraced {
+  margin-top: 1.25rem;
+  border-top: 1px solid #eaecf0;
+  padding-top: 1rem;
+}
+
+.tl-untraced-title {
+  margin: 0 0 0.2rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #101828;
+}

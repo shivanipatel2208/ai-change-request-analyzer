@@ -1,0 +1,230 @@
+/* Module 19 (Engineering Change Analytics) - styles specific to the new
+ * Analytics page. Metric cards, chart cards and bar lists reuse
+ * dashboard.css's own classes (imported alongside this file) rather than
+ * redefining them here. */
+
+.analytics-shell {
+  display: flex;
+  flex-direction: column;
+}
+
+.analytics-section-title {
+  margin: 1.75rem 0 0.9rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.analytics-section-title:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.analytics-note {
+  margin: -0.4rem 0 0.9rem;
+  font-size: 0.82rem;
+  color: #667085;
+}
+
+/* Filter bar */
+
+.analytics-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.9rem;
+  background: #fff;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.analytics-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 130px;
+}
+
+.analytics-filter label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #667085;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.analytics-filter select,
+.analytics-filter input[type='date'] {
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #101828;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  background: #fff;
+}
+
+.analytics-filter select:focus,
+.analytics-filter input[type='date']:focus {
+  outline: none;
+  border-color: #4338ca;
+  box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.12);
+}
+
+.analytics-clear-filters {
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475467;
+  background: #f9fafb;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  height: fit-content;
+}
+
+.analytics-clear-filters:hover {
+  background: #f2f4f7;
+}
+
+/* Metric grid variants - dashboard.css's own .metric-grid defaults to 5
+ * columns; these override the column count for sections with a different
+ * number of cards, without touching the shared card styling itself. */
+
+.analytics-metric-grid-7 {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.analytics-metric-grid-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.analytics-metric-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Simple label/count lists (approval bottlenecks, most-changed fields,
+ * workload per owner) - same row shape as dashboard.css's .bar-row, minus
+ * the proportional bar, for sections where a plain ranked list reads more
+ * clearly than a bar chart. */
+
+.analytics-simple-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.analytics-simple-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #344054;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid #f2f4f7;
+}
+
+.analytics-simple-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.analytics-simple-list li span:last-child {
+  font-weight: 600;
+  color: #101828;
+}
+
+/* Risk trend chart (RiskTrendChart.jsx) */
+
+.trend-list {
+  list-style: none;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.trend-row {
+  display: grid;
+  grid-template-columns: 70px 1fr 32px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.trend-row-label {
+  font-size: 0.78rem;
+  color: #475467;
+  white-space: nowrap;
+}
+
+.trend-bar-track {
+  height: 10px;
+  border-radius: 999px;
+  background: #f2f4f7;
+  overflow: hidden;
+  display: flex;
+}
+
+.trend-bar-segment {
+  height: 100%;
+}
+
+.trend-row-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #101828;
+  text-align: right;
+}
+
+.trend-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.trend-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: #667085;
+}
+
+.trend-legend-swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+@media (max-width: 1300px) {
+  .analytics-metric-grid-7 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .analytics-metric-grid-6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .analytics-metric-grid-7,
+  .analytics-metric-grid-6,
+  .analytics-metric-grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .analytics-metric-grid-7,
+  .analytics-metric-grid-6,
+  .analytics-metric-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}

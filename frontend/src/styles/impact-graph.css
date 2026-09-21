@@ -1,0 +1,256 @@
+/* Module 8: Impact & Dependency Graph - the interactive React Flow diagram
+   embedded in the Impact tab of the AI Analysis Dashboard. Scoped under
+   .ig- prefixed classes; reuses .badge / .bar-track / .bar-fill / .ad-empty
+   from the existing stylesheets rather than redefining them. */
+
+.ig-shell {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.ig-canvas {
+  position: relative;
+  height: 460px;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  background: #fbfbfd;
+  overflow: hidden;
+}
+
+.ig-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.ig-hint {
+  border: 1px dashed #d0d5dd;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.ig-empty {
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* Nodes */
+
+.ig-node {
+  min-width: 140px;
+  max-width: 190px;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px solid var(--ig-color, #d0d5dd);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  cursor: pointer;
+}
+
+.ig-node--root {
+  background: #4338ca;
+  border-color: #4338ca;
+  color: #fff;
+  align-items: center;
+  text-align: center;
+  cursor: default;
+}
+
+.ig-node--root .ig-node-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ig-node--root .ig-node-sub {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ig-node--hub {
+  background: #f2f4f7;
+  border: 1px dashed #98a2b3;
+  align-items: center;
+  text-align: center;
+  cursor: default;
+}
+
+.ig-node--hub .ig-node-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475467;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ig-node--item:hover {
+  box-shadow: 0 2px 6px rgba(16, 24, 40, 0.12);
+}
+
+.ig-node-kind {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--ig-color, #667085);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ig-node-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #101828;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ig-node-type {
+  font-size: 0.72rem;
+  color: #667085;
+}
+
+/* React Flow overrides, scoped to this canvas only */
+
+.ig-canvas .react-flow__handle {
+  width: 6px;
+  height: 6px;
+  background: #98a2b3;
+  border: none;
+}
+
+.ig-canvas .react-flow__attribution {
+  font-size: 0.6rem;
+}
+
+/* Detail panel */
+
+.ig-detail {
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ig-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ig-detail-close {
+  border: none;
+  background: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #98a2b3;
+  cursor: pointer;
+  padding: 0.15rem;
+}
+
+.ig-detail-close:hover {
+  color: #475467;
+}
+
+.ig-detail-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.ig-detail-type {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #667085;
+}
+
+.ig-detail-label {
+  margin: 0.25rem 0 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #98a2b3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ig-detail-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #344054;
+  line-height: 1.45;
+}
+
+.ig-detail-confidence {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ig-detail-confidence-value {
+  font-size: 0.78rem;
+  color: #667085;
+  white-space: nowrap;
+}
+
+/* Legend */
+
+.ig-legend {
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ig-legend-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #98a2b3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ig-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #344054;
+}
+
+.ig-legend-item i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.ig-intro {
+  font-style: italic;
+  color: #667085;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .ig-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .ig-canvas {
+    height: 380px;
+  }
+}

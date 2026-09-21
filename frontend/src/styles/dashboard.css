@@ -1,0 +1,422 @@
+.dashboard-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  box-sizing: border-box;
+}
+
+.dashboard-status-text {
+  color: #667085;
+  font-size: 0.95rem;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.dashboard-status-text--error {
+  color: #b42318;
+}
+
+.dashboard-heading {
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-heading h1 {
+  margin: 0 0 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.dashboard-heading p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #667085;
+}
+
+/* Metric cards */
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.metric-card {
+  background: #fff;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* Reset the browser's default <button> styling for cards rendered as a
+     button (see MetricCard.jsx's own docstring) - a plain display-only
+     card is still a <div> and never picks these up. */
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: default;
+}
+
+.metric-card--clickable {
+  cursor: pointer;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.metric-card--clickable:hover {
+  border-color: #b0b8ff;
+  box-shadow: 0 1px 4px rgba(16, 24, 40, 0.06);
+}
+
+.metric-card--active {
+  border-color: #4338ca;
+  box-shadow: 0 0 0 1px #4338ca inset;
+}
+
+/* The tile drill-down popup's filter toolbar (date range + rows-per-page),
+   and its footer's pagination info/controls - see components/Modal.jsx,
+   which supplies the popup shell itself. */
+
+.drilldown-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.drilldown-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #667085;
+}
+
+.drilldown-filter-field input,
+.drilldown-filter-field select {
+  font: inherit;
+  font-size: 0.85rem;
+  color: #101828;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 0.4rem 0.55rem;
+  background: #fff;
+}
+
+.drilldown-pagination-info {
+  font-size: 0.82rem;
+  color: #667085;
+  white-space: nowrap;
+}
+
+.drilldown-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metric-card-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #667085;
+}
+
+.metric-card-value {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.metric-card-value--danger {
+  color: #b42318;
+}
+
+.metric-card-value--success {
+  color: #067647;
+}
+
+.metric-card-value--warning {
+  color: #b54708;
+}
+
+.metric-card-value--neutral {
+  color: #344054;
+}
+
+/* Charts */
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.chart-card,
+.table-card {
+  background: #fff;
+  border: 1px solid #eaecf0;
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+}
+
+.chart-card-title {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #101828;
+}
+
+.table-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.table-card-header .chart-card-title {
+  margin-bottom: 1rem;
+}
+
+.chart-empty {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #98a2b3;
+  padding: 1rem 0;
+}
+
+.bar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 28px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bar-row-label {
+  font-size: 0.8rem;
+  color: #475467;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar-track {
+  height: 8px;
+  border-radius: 999px;
+  background: #f2f4f7;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+.bar-row-count {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #101828;
+  text-align: right;
+}
+
+/* Recent requests table */
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.requests-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #667085;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0 0.6rem 0.6rem;
+  border-bottom: 1px solid #eaecf0;
+  white-space: nowrap;
+}
+
+.requests-table td {
+  padding: 0.75rem 0.6rem;
+  border-bottom: 1px solid #f2f4f7;
+  color: #344054;
+  vertical-align: middle;
+}
+
+.requests-table tr:last-child td {
+  border-bottom: none;
+}
+
+.requests-table-id {
+  color: #98a2b3;
+  font-variant-numeric: tabular-nums;
+}
+
+.requests-table-title {
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #101828;
+  font-weight: 500;
+}
+
+.table-muted {
+  color: #98a2b3;
+}
+
+/* Badges (status / risk) */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge--gray {
+  background: #f2f4f7;
+  color: #475467;
+}
+
+.badge--blue {
+  background: #eff8ff;
+  color: #175cd3;
+}
+
+.badge--purple {
+  background: #f4f3ff;
+  color: #5925dc;
+}
+
+.badge--green {
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.badge--red {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.badge--amber {
+  background: #fffaeb;
+  color: #b54708;
+}
+
+.badge--orange {
+  background: #fff4ed;
+  color: #c4320a;
+}
+
+.badge--teal {
+  background: #f0fdf9;
+  color: #107569;
+}
+
+.badge--indigo {
+  background: #eef1fd;
+  color: #4338ca;
+}
+
+/* Empty state */
+
+.dashboard-empty {
+  max-width: 420px;
+  margin: 4rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dashboard-empty-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #eef1fd;
+  color: #4338ca;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-empty-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.dashboard-empty-subtitle {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  color: #667085;
+  line-height: 1.5;
+}
+
+.dashboard-empty-cta {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: #4338ca;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.dashboard-empty-cta:hover {
+  background: #372ea8;
+}
+
+@media (max-width: 1100px) {
+  .metric-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-shell {
+    padding: 1.25rem 1rem 2rem;
+  }
+}

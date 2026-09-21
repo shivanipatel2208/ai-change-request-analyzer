@@ -1,0 +1,353 @@
+.app-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-right: 1px solid #eaecf0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1rem;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+}
+
+.app-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.4rem;
+  margin-bottom: 1.75rem;
+  position: relative;
+}
+
+/* Module 18 Phase 6: the notification-center bell + its dropdown - see
+   components/AppHeader.jsx's own doc comment. */
+.notif-bell-wrap {
+  position: relative;
+  margin-left: auto;
+}
+
+.notif-bell-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.notif-bell-btn:hover {
+  background: #f9fafb;
+}
+
+.notif-bell-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: #d92d20;
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.18rem 0.32rem;
+  border-radius: 999px;
+  min-width: 1rem;
+  text-align: center;
+}
+
+.notif-dropdown {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  width: 320px;
+  max-width: calc(100vw - 2rem);
+  background: #ffffff;
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.notif-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid #f2f4f7;
+  font-size: 0.85rem;
+}
+
+.notif-dropdown-status {
+  padding: 0.9rem;
+  margin: 0;
+  font-size: 0.82rem;
+  color: #667085;
+  text-align: center;
+}
+
+.notif-dropdown-status--error {
+  color: #b42318;
+}
+
+.notif-dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.notif-dropdown-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  padding: 0.65rem 0.85rem;
+  border: none;
+  border-bottom: 1px solid #f2f4f7;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.notif-dropdown-item:hover {
+  background: #f9fafb;
+}
+
+.notif-dropdown-item--unread {
+  background: #f8f9ff;
+}
+
+.notif-dropdown-item-top {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.notif-dropdown-item-title {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #101828;
+}
+
+.notif-dropdown-item-message {
+  font-size: 0.78rem;
+  color: #475467;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notif-dropdown-item-time {
+  font-size: 0.7rem;
+  color: #98a2b3;
+}
+
+.notif-dropdown-footer {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4338ca;
+  background: #fafaff;
+  border: none;
+  border-top: 1px solid #f2f4f7;
+  padding: 0.6rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.notif-dropdown-footer:hover {
+  background: #eef1fd;
+}
+
+.app-sidebar-logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #4338ca;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.app-sidebar-logo-word {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #101828;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.app-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1 1 auto;
+}
+
+.app-sidebar-link {
+  font-family: inherit;
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: #475467;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+/* Module 12 Phase 5: unread-notification count on the sidebar nav item */
+.app-sidebar-badge {
+  background: #d92d20;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.22rem 0.4rem;
+  border-radius: 999px;
+  min-width: 1.1rem;
+  text-align: center;
+}
+
+.app-sidebar-link:hover {
+  background: #f9fafb;
+  color: #101828;
+}
+
+.app-sidebar-link--active {
+  background: #eef1fd;
+  color: #4338ca;
+}
+
+.app-sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid #f2f4f7;
+}
+
+.app-sidebar-footer .status-badge {
+  align-self: flex-start;
+}
+
+.app-sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.4rem;
+  min-width: 0;
+}
+
+.app-sidebar-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #eef1fd;
+  color: #4338ca;
+  font-size: 0.72rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.app-sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app-sidebar-user-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #101828;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-sidebar-user-role {
+  font-size: 0.72rem;
+  color: #98a2b3;
+  text-transform: capitalize;
+}
+
+.app-sidebar-logout {
+  font-family: inherit;
+  font-size: 0.83rem;
+  font-weight: 500;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #b42318;
+  padding: 0.45rem 0.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.app-sidebar-logout:hover {
+  background: #fef3f2;
+}
+
+@media (max-width: 900px) {
+  .app-sidebar {
+    width: 76px;
+  }
+
+  .app-sidebar-logo-word,
+  .app-sidebar-user-info,
+  .app-sidebar-logout,
+  .app-sidebar-footer .status-badge {
+    display: none;
+  }
+
+  .app-sidebar-brand {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .app-sidebar-link {
+    text-align: center;
+    font-size: 0.62rem;
+    padding: 0.55rem 0.2rem;
+  }
+
+  .app-sidebar-user {
+    justify-content: center;
+    padding: 0;
+  }
+}

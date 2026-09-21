@@ -1,0 +1,1 @@
+OTP codes for Alight.com must expire after 5 minutes and be rate-limited per phone number.

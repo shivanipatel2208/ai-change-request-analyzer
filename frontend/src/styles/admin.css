@@ -1,0 +1,239 @@
+/* Module 21: Administration & Configuration page (AdminPage.jsx). This page
+   already reuses .ad-shell/.ad-tabs/.ad-tab/.ad-tab-content (analysis-
+   dashboard.css), .cr-section/.cr-field/.cr-field-row/.cr-form-error/
+   .cr-form-actions (change-request-form.css), .cr-btn* (workflow.css /
+   change-request-form.css), .requests-table and .badge* (dashboard.css) -
+   everything below is specific to the admin tabs themselves, styled to
+   match the same palette those files already use (grays #101828 / #344054
+   / #475467 / #667085 / #98a2b3 / #eaecf0 / #f2f4f7 / #f9fafb, indigo
+   accent #4338ca, green #ecfdf3 / #067647, red #fef3f2 / #b42318). */
+
+/* Users tab: "Add User" row above the table */
+
+.admin-tab-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.admin-tab-hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  color: #667085;
+  line-height: 1.5;
+}
+
+.admin-tab-toolbar .admin-tab-hint {
+  margin: 0;
+}
+
+/* Inline create/add forms (new user, new approval rule) - a .cr-section
+   that sits above the table it feeds, slightly tighter than a full-page
+   form section. */
+
+.admin-inline-form {
+  margin-bottom: 1rem;
+  background: #f9fafb;
+}
+
+.admin-row-error {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: #b42318;
+}
+
+/* Permissions matrix */
+
+.admin-matrix-scroll {
+  overflow-x: auto;
+  margin-bottom: 0.5rem;
+}
+
+.admin-matrix {
+  min-width: 720px;
+}
+
+.admin-matrix th,
+.admin-matrix td {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.admin-matrix th:first-child,
+.admin-matrix td:first-child {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.admin-matrix input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.admin-matrix-locked-row {
+  background: #f9fafb;
+}
+
+.admin-matrix-locked-row td {
+  color: #98a2b3;
+}
+
+.admin-save-message {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #067647;
+  margin-right: auto;
+}
+
+/* Chips - used for approval-rule required-types selection and the
+   editable cr_categories list */
+
+.admin-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.3rem 0 0.6rem;
+}
+
+.admin-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475467;
+  background: #f2f4f7;
+  border: 1px solid #eaecf0;
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.admin-chip:hover {
+  background: #eaecf0;
+}
+
+.admin-chip--active {
+  background: #eef1fd;
+  border-color: #c7d2fe;
+  color: #4338ca;
+}
+
+.admin-chip--small {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.admin-chip--removable {
+  cursor: default;
+  background: #fff;
+  border-color: #d0d5dd;
+  color: #344054;
+}
+
+.admin-chip--removable button {
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1;
+  color: #98a2b3;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.admin-chip--removable button:hover {
+  color: #b42318;
+}
+
+.admin-chip--removable button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.admin-inline-add {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-inline-add input[type='text'] {
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #101828;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+  min-width: 220px;
+}
+
+.admin-inline-add input[type='text']:focus {
+  outline: none;
+  border-color: #4338ca;
+}
+
+/* Read-only system-settings info panels (AI provider / repository /
+   knowledge base) */
+
+.admin-info-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1rem;
+  margin: 0.5rem 0 0;
+}
+
+.admin-info-list dt {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #98a2b3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  align-self: center;
+}
+
+.admin-info-list dd {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #344054;
+  align-self: center;
+}
+
+.admin-info-path {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.78rem;
+  color: #475467;
+  word-break: break-all;
+}
+
+/* Audit log pagination */
+
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .admin-tab-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-info-list {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-info-list dt {
+    margin-top: 0.4rem;
+  }
+}

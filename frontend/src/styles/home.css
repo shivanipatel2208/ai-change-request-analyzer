@@ -1,0 +1,24 @@
+/* Shared shell styles for the authenticated app - the dashboard-specific
+   styling itself lives in dashboard.css, and the header in
+   components/header.css. */
+
+.app-shell {
+  min-height: 100vh;
+  background: #f9fafb;
+  display: flex;
+  align-items: stretch;
+}
+
+.app-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.app-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #667085;
+  font-size: 0.95rem;
+}
