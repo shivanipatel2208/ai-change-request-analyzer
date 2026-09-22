@@ -189,10 +189,3 @@ hackathon_alight/
 └── PROJECT_REPORT.md             # the full build log, module by module
 ```
 
-## Known limitations
-
-See `PROJECT_REPORT.md`'s per-module "Known limitations" sections for the complete, honestly
-disclosed list. The two still open as of the final module: any authenticated user can archive or
-reprocess any knowledge-base document (not just its uploader or an admin), and priority values
-plus the workflow status-transition graph are intentionally not admin-configurable, since both
-are load-bearing across scoring, sorting, and the status machine elsewhere in the app.
